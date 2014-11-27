@@ -1,5 +1,7 @@
+[![Build Status](https://travis-ci.org/giaman/gulp-nunjucks-html.svg?branch=master)](https://travis-ci.org/giaman/gulp-nunjucks-html)
+
 Usage
------
+=====
 
 ```js
 var nunjucks = require('gulp-nunjucks-html');
@@ -18,15 +20,17 @@ gulp.task('html', function() {
 ```
 
 Options
--------
+=======
 
-#### searchPaths
+searchPaths
+-----------
 
 Type: `Array`
 
 A list of paths to look for templates (see [FileSystemLoader](http://mozilla.github.io/nunjucks/api.html#filesystemloader)).
 
-#### data
+data
+----
 
 Type: `Object`
 
