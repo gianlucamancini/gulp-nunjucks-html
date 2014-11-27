@@ -1,0 +1,36 @@
+{
+  "name": "gulp-nunjucks-html",
+  "version": "1.0.0",
+  "description": "Compile Nunjucks templates into HTML",
+  "license": "MIT",
+  "repository": "giaman/gulp-nunjucks-html",
+  "author": {
+    "name": "Gianluca Mancini",
+    "email": "mancini.ianluca@gmail.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "gulpplugin",
+    "nunjucks",
+    "jinja2",
+    "django",
+    "template",
+    "templating",
+    "view",
+    "compile",
+    "render",
+    "html",
+    "javascript"
+  ],
+  "dependencies": {
+    "gulp-util": "^3.0.1",
+    "nunjucks": "^1.1.0",
+    "object-assign": "^2.0.0",
+    "through2": "^0.6.3"
+  }
+}
