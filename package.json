@@ -1,7 +1,7 @@
 {
   "name": "gulp-nunjucks-html",
   "version": "1.0.0",
-  "description": "Compile Nunjucks templates into HTML",
+  "description": "Render Nunjucks templates to HTML",
   "license": "MIT",
   "repository": "giaman/gulp-nunjucks-html",
   "author": {

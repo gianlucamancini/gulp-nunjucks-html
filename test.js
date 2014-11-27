@@ -5,7 +5,7 @@ var gutil = require('gulp-util');
 
 var nunjucks = require('./');
 
-it('should render Nunjucks templates as HTML', function(cb) {
+it('should render Nunjucks templates to HTML', function(cb) {
   var stream = nunjucks({
     data: {
       username: 'James'
