@@ -1,7 +1,16 @@
 .. image:: https://travis-ci.org/giaman/gulp-nunjucks-html.svg?branch=master
     :target: https://travis-ci.org/giaman/gulp-nunjucks-html
 
-Render `Nunjucks`_ templates to HTML.
+Information
+-----------
+
++--------------+--------------------------------------+
+| Package      | gulp-nunjucks-html                   |
++--------------+--------------------------------------+
+| Description  | Render `Nunjucks`_ templates to HTML |
++--------------+--------------------------------------+
+| Node Version | >= 0.10                              |
++--------------+--------------------------------------+
 
 Usage
 -----
@@ -32,7 +41,7 @@ Type: ``Array``
 
 Default: ``[]``
 
-A list of paths to look for templates (see `FileSystemLoader`_).
+A list of paths to look for templates (see `FileSystemLoader`_). Normally this hash contains the root directory where the templates are placed to allow a relative import.
 
 data
 ^^^^
