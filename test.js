@@ -12,18 +12,16 @@ it('should render Nunjucks templates to HTML', function(cb) {
     }
   });
 
-  stream.on('data', function(file) {
-    assert.equal(file.path, __dirname + '/fixture/fixture.html');
-    assert.equal(file.relative, 'fixture/fixture.html');
-    assert(/<h1>Hello James<\/h1>/.test(file.contents.toString('utf8')));
-    cb();
-  });
-
   var fakeFile = new gutil.File({
     base: __dirname,
-    path: __dirname + '/fixture/fixture.html',
+    path: __dirname + '/fixture/fixture.nunjucks',
     contents: new Buffer('<h1>Hello {{ username }}</h1>')
   });
 
-  stream.write(fakeFile);
+  stream.on('data', function(file) {
+    assert.equal(file.path, __dirname + '/fixture/fixture.nunjucks');
+    assert.equal(file.relative, 'fixture/fixture.nunjucks');
+    assert(/<h1>Hello James<\/h1>/.test(file.contents.toString('utf8')));
+    cb();
+  }).write(fakeFile);
 });
