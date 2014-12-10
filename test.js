@@ -21,7 +21,11 @@ it('should render Nunjucks templates to HTML', function(cb) {
   var fakeFile = new gutil.File({
     base: __dirname,
     path: __dirname + '/fixture/fixture.nunjucks',
+<<<<<<< HEAD
     contents: new Buffer('<h1>{{ username|greet }}</h1>')
+=======
+    contents: new Buffer('<h1>Hello {{ username }}</h1>')
+>>>>>>> 74ee216795017e862c139ef899d0c13dbfd41d63
   });
 
   stream.on('data', function(file) {
@@ -30,4 +34,8 @@ it('should render Nunjucks templates to HTML', function(cb) {
     assert(/<h1>Hello James<\/h1>/.test(file.contents.toString('utf8')));
     cb();
   }).write(fakeFile);
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 74ee216795017e862c139ef899d0c13dbfd41d63

@@ -31,10 +31,13 @@ function nunjucksBuild(opts) {
     var loader = new nunjucks.FileSystemLoader(options.searchPaths);
     var env = new nunjucks.Environment(loader);
 
+<<<<<<< HEAD
     if (options.setUp && typeof options.setUp === 'function') {
       env = options.setUp(env);
     }
 
+=======
+>>>>>>> 74ee216795017e862c139ef899d0c13dbfd41d63
     env.renderString(str, options.data, function(err, res) {
 
       if (err) {
