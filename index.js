@@ -21,25 +21,31 @@ function nunjucksBuild(opts) {
       return cb(new PluginError(pluginName, 'Streaming is not supported'));
     }
 
-    var defaults = {
+    var options = assign({
       data: {},
       searchPaths: []
-    };
-
-    opts = assign(defaults, opts);
+    }, opts);
 
     var str = file.contents.toString('utf8');
 
-    var loader = new nunjucks.FileSystemLoader(opts.searchPaths);
+    var loader = new nunjucks.FileSystemLoader(options.searchPaths);
     var env = new nunjucks.Environment(loader);
 
-    env.renderString(str, opts.data, function(err, res) {
+    if (options.setUp && typeof options.setUp === 'function') {
+      env = options.setUp(env);
+    }
+
+    env.renderString(str, options.data, function(err, res) {
 
       if (err) {
         return cb(new PluginError(pluginName, err));
       }
 
       file.contents = new Buffer(res);
+
+      if (options.ext) {
+        file.path = gutil.replaceExtension(file.path, options.ext);
+      }
 
       cb(null, file);
 
