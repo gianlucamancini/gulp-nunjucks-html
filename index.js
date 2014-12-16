@@ -22,13 +22,16 @@ function nunjucksBuild(opts) {
     }
 
     var options = assign({
+      autoescape: false,
       data: {},
       searchPaths: []
     }, opts);
 
     var str = file.contents.toString('utf8');
 
-    var loader = new nunjucks.FileSystemLoader(options.searchPaths);
+    var loader = new nunjucks.FileSystemLoader(options.searchPaths, {
+      autoescape: options.autoescape
+    });
     var env = new nunjucks.Environment(loader);
 
     if (options.setUp && typeof options.setUp === 'function') {

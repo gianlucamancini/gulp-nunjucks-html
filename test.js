@@ -10,6 +10,7 @@ it('should render Nunjucks templates to HTML', function(cb) {
     data: {
       username: 'James'
     },
+    ext: '.html',
     setUp: function(env) {
       env.addFilter('greet', function(str) {
         return 'Hello ' + str;
@@ -25,8 +26,8 @@ it('should render Nunjucks templates to HTML', function(cb) {
   });
 
   stream.on('data', function(file) {
-    assert.equal(file.path, __dirname + '/fixture/fixture.nunjucks');
-    assert.equal(file.relative, 'fixture/fixture.nunjucks');
+    assert.equal(file.path, __dirname + '/fixture/fixture.html');
+    assert.equal(file.relative, 'fixture/fixture.html');
     assert(/<h1>Hello James<\/h1>/.test(file.contents.toString('utf8')));
     cb();
   }).write(fakeFile);
