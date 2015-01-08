@@ -34,14 +34,15 @@ gulp.task('nunjucks', function() {
     .on('error', function(err) {
       // err is the error thrown by the Nunjucks compiler.
     })
-    .on('error', console.error.bind(console))
     .pipe(gulp.dest('dist'));
 });
 ```
 
 ### Use with [gulp-data](https://www.npmjs.org/package/gulp-data)
 
-With `gulp-data` you can pass additional context to the Nunjucks compiler. For example, to get the data from a JSON file:
+With `gulp-data` you can pass additional context to the Nunjucks compiler.
+
+For example, to get the data from a JSON file:
 
 ```js
 gulp.task('nunjucks', function() {
@@ -58,7 +59,7 @@ gulp.task('nunjucks', function() {
 });
 ```
 
-Note that `gulp-data` has precedence over `locals`.
+This will merge the content of the JSON file with the `locals` hash. Note that `gulp-data` has precedence over `locals`.
 
 ## Options
 
