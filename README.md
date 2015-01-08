@@ -7,7 +7,7 @@ Render [Nunjucks](http://mozilla.github.io/nunjucks) templates to HTML.
 ```js
 var nunjucks = require('gulp-nunjucks-html');
 
-gulp.task('html', function() {
+gulp.task('nunjucks', function() {
   return gulp.src('src/templates/*.html')
     .pipe(nunjucks({
       data: {
@@ -31,7 +31,7 @@ Default: `[]`
 A list of paths to look for templates (see [FileSystemLoader](http://mozilla.github.io/nunjucks/api.html#filesystemloader)).
 Can also be a single path for where templates live, and it defaults to the current working directory.
 
-#### data
+#### locals
 
 Type: `Object`
 
@@ -39,13 +39,7 @@ Default: `{}`
 
 The `context` object passed to [nunjucks.renderString](http://mozilla.github.io/nunjucks/api.html#renderstring).
 
-#### ext
-
-Type: `String`
-
-Default: The source file extension
-
-The extension that the output file will have (for example `.html`).
+Note that if you are using [gulp-data](npmjs.org/package/gulp-data), the context passed by this will have precedence over the locals.
 
 #### autoescape
 
@@ -61,7 +55,7 @@ Type: `Function`
 
 Default: `undefined`
 
-Use this function to extend the Nunjuck's `Environment` object, adding custom filters, extensions etc.
+Use this function to extend the Nunjuck's `Environment` object, adding custom filters, tags etc.
 
 ```js
 var nunjucks = require('gulp-nunjucks-html');
