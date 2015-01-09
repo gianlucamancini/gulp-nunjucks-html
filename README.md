@@ -38,28 +38,27 @@ gulp.task('nunjucks', function() {
 });
 ```
 
-### Use with [gulp-data](https://www.npmjs.org/package/gulp-data)
+### Use with other plugins
 
-With `gulp-data` you can pass additional context to the Nunjucks compiler.
+The context used for rendering (i.e. the object passed to [nunjucks.renderString](http://mozilla.github.io/nunjucks/api.html#renderstring)) is created by merging the `locals` object (see Options) with other data passed down the stream by other plugins. Currently, this plugin supports [gulp-data](https://www.npmjs.org/package/gulp-data) and [gulp-front-matter](https://www.npmjs.org/package/gulp-front-matter).
 
-For example, to get the data from a JSON file:
+Note that `gulp-front-matter` has the highest priority, followed by `gulp-data` and finally `locals`.
 
 ```js
 gulp.task('nunjucks', function() {
   return gulp.src('src/templates/contact.html')
+    // Get data from a JSON file and FrontMatter
     .pipe(data(function(file) {
       return require('./metadata/' + path.basename(file.path) + '.json');
     }))
+    .pipe(frontMatter())
+    // Context is the front matter of the file and the JSON data, plus the locals object.
     .pipe(nunjucks({
-      locals: {
-        name: 'James'
-      }
+      locals: { apiKey: 'secret-key-here' }
     }))
     .pipe(gulp.dest('dist'));
 });
 ```
-
-This will merge the content of the JSON file with the `locals` hash. Note that `gulp-data` has precedence over `locals`.
 
 ## Options
 
@@ -78,7 +77,7 @@ Type: `Object`
 
 Default: `{}`
 
-The `context` object passed to [nunjucks.renderString](http://mozilla.github.io/nunjucks/api.html#renderstring).
+An hash used as context for compiling the templates.
 
 #### autoescape
 

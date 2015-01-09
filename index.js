@@ -26,13 +26,9 @@ function nunjucksBuild(opts) {
     }, opts);
 
     var str = file.contents.toString('utf8');
-    var data;
-
-    if (file.data) {
-      data = assign(options.locals, file.data);
-    } else {
-      data = options.locals;
-    }
+    var data = file.data ? file.data : {};
+    var fm = file.frontMatter ? file.frontMatter : {};
+    var context = assign(options.locals, data, fm);
 
     var loader = new nunjucks.FileSystemLoader(options.searchPaths, {
       autoescape: options.autoescape
@@ -43,7 +39,7 @@ function nunjucksBuild(opts) {
       env = options.setUp(env);
     }
 
-    env.renderString(str, data, function(err, res) {
+    env.renderString(str, context, function(err, res) {
 
       if (err) {
         return cb(new PluginError('gulp-nunjucks-html', err));
