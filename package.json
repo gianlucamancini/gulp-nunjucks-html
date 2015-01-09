@@ -38,7 +38,6 @@
     "through2": "~0.6.3"
   },
   "devDependencies": {
-    "gulp-front-matter": "*",
     "mocha": "~2.1.0"
   }
 }

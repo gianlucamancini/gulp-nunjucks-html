@@ -47,12 +47,13 @@ Note that `gulp-front-matter` has the highest priority, followed by `gulp-data` 
 ```js
 gulp.task('nunjucks', function() {
   return gulp.src('src/templates/contact.html')
-    // Get data from a JSON file and FrontMatter
+    // Get data from a JSON file
     .pipe(data(function(file) {
       return require('./metadata/' + path.basename(file.path) + '.json');
     }))
+    // Extract the FrontMatter
     .pipe(frontMatter())
-    // Context is the front matter of the file and the JSON data, plus the locals object.
+    // Context is the FrontMatter of the file and the JSON data, plus the locals object.
     .pipe(nunjucks({
       locals: { apiKey: 'secret-key-here' }
     }))
