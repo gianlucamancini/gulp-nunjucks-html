@@ -28,7 +28,7 @@ function nunjucksBuild(opts) {
     var str = file.contents.toString('utf8');
     var data = file.data ? file.data : {};
     var fm = file.frontMatter ? file.frontMatter : {};
-    var context = assign(options.locals, data, fm);
+    var context = assign({}, options.locals, data, fm);
 
     var loader = new nunjucks.FileSystemLoader(options.searchPaths, {
       autoescape: options.autoescape
