@@ -7,6 +7,8 @@ var assign = require('object-assign');
 var nunjucks = require('nunjucks');
 var through = require('through2');
 
+var PLUGIN_NAME = 'gulp-nunjucks-html';
+
 function nunjucksBuild(opts) {
 
   return through.obj(function(file, enc, cb) {
@@ -16,7 +18,7 @@ function nunjucksBuild(opts) {
     }
 
     if (file.isStream()) {
-      return cb(new PluginError('gulp-nunjucks-html', 'Streams are not supported'));
+      return cb(new PluginError(PLUGIN_NAME, 'Streams are not supported'));
     }
 
     var options = assign({
@@ -42,7 +44,7 @@ function nunjucksBuild(opts) {
     env.renderString(str, context, function(err, res) {
 
       if (err) {
-        return cb(new PluginError('gulp-nunjucks-html', err));
+        return cb(new PluginError(PLUGIN_NAME, err));
       }
 
       file.contents = new Buffer(res);
