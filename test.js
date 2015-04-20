@@ -38,6 +38,23 @@ it('should render Nunjucks templates to HTML', function(cb) {
     .write(createFile('fixture/fixture.html', '<p>{{ name }}</p>'));
 });
 
+it('should render Nunjucks templates with custom tags to HTML', function(cb) {
+  var opts = {
+    locals: {
+      name: 'Bond'
+    },
+    tags: {variableStart: '{@', variableEnd: '@}'}
+  };
+
+  nunjucks(opts)
+    .on('error', cb)
+    .on('data', function(file) {
+      assert(/<p>Bond<\/p>/.test(file.contents.toString('utf8')));
+      cb();
+    })
+    .write(createFile('fixture/fixture.html', '<p>{@ name @}</p>'));
+});
+
 it('should render Nunjucks templates asynchronously', function(cb) {
   function asyncFn(name, cb) {
     cb(null, 'Hello ' + name);

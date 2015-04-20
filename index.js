@@ -32,10 +32,14 @@ function nunjucksBuild(opts) {
     var fm = file.frontMatter ? file.frontMatter : {};
     var context = assign({}, options.locals, data, fm);
 
-    var loader = new nunjucks.FileSystemLoader(options.searchPaths, {
-      autoescape: options.autoescape
-    });
-    var env = new nunjucks.Environment(loader);
+    var loader = new nunjucks.FileSystemLoader(options.searchPaths, true);
+    var env = new nunjucks.Environment(loader, (function() {
+      var envOptions = {};
+      ['autoescape', 'tags'].forEach(function(opt) {
+        if (options.hasOwnProperty(opt)) envOptions[opt] = options[opt];
+      });
+      return envOptions;
+    })());
 
     if (options.setUp && typeof options.setUp === 'function') {
       env = options.setUp(env);
