@@ -1,20 +1,25 @@
 [![Build Status](https://travis-ci.org/giaman/gulp-nunjucks-html.svg?branch=master)](https://travis-ci.org/giaman/gulp-nunjucks-html)
 
-Render [Nunjucks](http://mozilla.github.io/nunjucks) templates to HTML.
+> Render [Nunjucks](http://mozilla.github.io/nunjucks) templates to HTML.
+
+## Install
+
+```
+$ npm install --save-dev gulp-nunjucks-html
+```
 
 ## Usage
 
 ```js
 var nunjucks = require('gulp-nunjucks-html');
 
+var nunjucksOpts = {
+  searchPaths: ['src/templates']
+};
+
 gulp.task('nunjucks', function() {
   return gulp.src('src/templates/*.html')
-    .pipe(nunjucks({
-      locals: {
-        username: 'James'
-      },
-      searchPaths: ['src/templates']
-    }))
+    .pipe(nunjucks(nunjucksOpts))
     .pipe(gulp.dest('dist'));
 });
 ```
@@ -87,6 +92,14 @@ Type: `Boolean`
 Default: `false`
 
 Controls if output with dangerous characters are escaped automatically.
+
+### tags
+
+Type: `Object`
+
+Default: `Default Nunjucks syntax`
+
+Defines the syntax for Nunjucks tags. See [Customizing Syntax](https://mozilla.github.io/nunjucks/api.html#customizing-syntax).
 
 #### setUp
 

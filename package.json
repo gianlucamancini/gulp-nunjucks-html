@@ -1,6 +1,6 @@
 {
   "name": "gulp-nunjucks-html",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Render Nunjucks templates to HTML",
   "license": "MIT",
   "repository": "giaman/gulp-nunjucks-html",
@@ -38,6 +38,6 @@
     "through2": "~0.6.3"
   },
   "devDependencies": {
-    "mocha": "~2.1.0"
+    "mocha": "~2.2.4"
   }
 }
