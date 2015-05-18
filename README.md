@@ -109,6 +109,14 @@ Default: `undefined`
 
 Use this function to extend the Nunjuck's `Environment` object, adding custom filters, tags etc.
 
+#### ext
+
+Type: `String`
+
+Default: `undefined`
+
+Change generated files extension by this extension instead of templates extension.
+
 ```js
 gulp.task('html', function() {
   return gulp.src('src/templates/*.html')
