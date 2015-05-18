@@ -52,7 +52,10 @@ function nunjucksBuild(opts) {
       }
 
       file.contents = new Buffer(res);
-      if (options.ext ) file.path = gutil.replaceExtension(file.path, opts.ext);
+
+      if (options.ext) {
+        file.path = gutil.replaceExtension(file.path, opts.ext);
+      }
 
       cb(null, file);
 

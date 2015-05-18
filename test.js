@@ -78,3 +78,18 @@ it('should render Nunjucks templates asynchronously', function(cb) {
     })
     .write(createFile('fixture/fixture.html', '{{ "World"|greet }}'));
 });
+
+it('should render Nunjucks templates with different extension', function(cb) {
+  var opts = {
+    ext: '.html'
+  };
+
+  nunjucks(opts)
+    .on('error', cb)
+    .on('data', function(file) {
+      assert.equal(file.path, dir('fixture/fixture.html'));
+      assert.equal(file.relative, 'fixture.html');
+      cb();
+    })
+    .write(createFile('fixture/fixture.nunjucks', 'Hello World'));
+});

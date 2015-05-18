@@ -93,7 +93,7 @@ Default: `false`
 
 Controls if output with dangerous characters are escaped automatically.
 
-### tags
+#### tags
 
 Type: `Object`
 
