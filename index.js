@@ -36,7 +36,9 @@ function nunjucksBuild(opts) {
     var env = new nunjucks.Environment(loader, (function() {
       var envOptions = {};
       ['autoescape', 'tags'].forEach(function(opt) {
-        if (options.hasOwnProperty(opt)) envOptions[opt] = options[opt];
+        if (options.hasOwnProperty(opt)) {
+          envOptions[opt] = options[opt];
+        }
       });
       return envOptions;
     })());
