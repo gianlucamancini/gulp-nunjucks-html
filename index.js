@@ -32,7 +32,11 @@ function nunjucksBuild(opts) {
     var fm = file.frontMatter ? file.frontMatter : {};
     var context = assign({}, options.locals, data, fm);
 
-    var loader = new nunjucks.FileSystemLoader(options.searchPaths, true);
+    var loader = new nunjucks.FileSystemLoader(options.searchPaths, {
+      watch: false,
+      noCache: false
+    });
+
     var env = new nunjucks.Environment(loader, (function() {
       var envOptions = {};
       ['autoescape', 'tags'].forEach(function(opt) {

@@ -1,6 +1,8 @@
-[![Build Status](https://travis-ci.org/giaman/gulp-nunjucks-html.svg?branch=master)](https://travis-ci.org/giaman/gulp-nunjucks-html)
+[![Build Status](https://travis-ci.org/gianlucamancini/gulp-nunjucks-html.svg?branch=master)](https://travis-ci.org/giaman/gulp-nunjucks-html)
 
 > Render [Nunjucks](http://mozilla.github.io/nunjucks) templates to HTML.
+
+*Issues with the output should be reported on the Nunjucks [issue tracker](https://github.com/mozilla/nunjucks/issues).*
 
 ## Install
 
@@ -11,15 +13,14 @@ $ npm install --save-dev gulp-nunjucks-html
 ## Usage
 
 ```js
+var gulp = require('gulp');
 var nunjucks = require('gulp-nunjucks-html');
 
-var nunjucksOpts = {
-  searchPaths: ['src/templates']
-};
-
 gulp.task('nunjucks', function() {
-  return gulp.src('src/templates/*.html')
-    .pipe(nunjucks(nunjucksOpts))
+  return gulp.src('app/templates/**/*.html')
+    .pipe(nunjucks({
+      searchPaths: ['app/templates']
+    }))
     .pipe(gulp.dest('dist'));
 });
 ```
@@ -66,9 +67,11 @@ gulp.task('nunjucks', function() {
 });
 ```
 
-## Options
+## API
 
-#### searchPaths
+### nunjucks(options)
+
+#### options.searchPaths
 
 Type: `Array`
 
@@ -77,7 +80,7 @@ Default: `[]`
 A list of paths to look for templates (see [FileSystemLoader](http://mozilla.github.io/nunjucks/api.html#filesystemloader)).
 Can also be a single path for where templates live, and it defaults to the current working directory.
 
-#### locals
+#### options.locals
 
 Type: `Object`
 
@@ -85,7 +88,7 @@ Default: `{}`
 
 An hash used as context for compiling the templates.
 
-#### autoescape
+#### options.autoescape
 
 Type: `Boolean`
 
@@ -93,7 +96,7 @@ Default: `false`
 
 Controls if output with dangerous characters are escaped automatically.
 
-#### tags
+#### options.tags
 
 Type: `Object`
 
@@ -101,7 +104,7 @@ Default: `Default Nunjucks syntax`
 
 Defines the syntax for Nunjucks tags. See [Customizing Syntax](https://mozilla.github.io/nunjucks/api.html#customizing-syntax).
 
-#### setUp
+#### options.setUp
 
 Type: `Function`
 
@@ -125,7 +128,7 @@ gulp.task('html', function() {
 });
 ```
 
-#### ext
+#### options.ext
 
 Type: `String`
 
